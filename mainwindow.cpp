@@ -20,10 +20,21 @@ MainWindow::~MainWindow()
 
 void MainWindow::resetForm()
 {
-    QString message = "Não Gostei muito de Popoca....";
+    QString message = "";
 
-    if (QMessageBox::question(this,"Deseja Fazer um teste?","Você gosta de popoca?",QMessageBox::Yes | QMessageBox::No)) {
+    int retorno =  (QMessageBox::question(this,"Deseja Fazer um teste?","Você gosta de popoca?",QMessageBox::Yes | QMessageBox::No| QMessageBox::Cancel));
+
+    switch (retorno) {
+    case QMessageBox::Yes:
         message = "Gosta muito de Popoca Galoto";
+        break;
+
+    case QMessageBox::No:
+        message = "Não gostei muito de Popoca Galoto";
+        break;
+    default:
+        message = "";
+        break;
     }
 
     QMessageBox::about(this, "Resposta da Pergunta", message);
